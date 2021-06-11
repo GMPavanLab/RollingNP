@@ -14,7 +14,7 @@ All the input data needed to run the simulations and get the results are organiz
 
  * `3-UnbiasedMD/`
 
-	tis folder includes the Gromacs input files needed to reproduce the Unbiased simulations as shown in the article.
+	this folder includes the Gromacs input files needed to reproduce the Unbiased simulations as shown in the article.
 
  * `4-MetaD/`
 

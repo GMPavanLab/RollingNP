@@ -1,0 +1,11 @@
+#include "forcefield.itp"
+
+[ system ]
+100 beads C1 - 400 SUP
+
+[ molecules ]
+GUEST     75
+DENDRONE  1925
+LIGANDO   18432
+
+

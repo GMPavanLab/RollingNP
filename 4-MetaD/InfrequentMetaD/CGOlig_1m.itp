@@ -1,0 +1,236 @@
+;;; trimer.itp
+[ moleculetype ]
+; molname       nrexcl
+TRMR			1
+
+[ atoms ]
+;;; residue: CORE; HFOB (hydrophobic); HFIL (hydrophilic)
+;;; core
+; i type resnr residue atom cgnr charge mass
+1	P1	 1	CORE	Nc 		1		0.0		; Nc: central N bead, changed as P1
+2	P1	 1	CORE	Pt		2		0.0		; Pt: peptidic bead, cahnged as P5
+3	P1	 1	CORE 	Pt		3		0.0		; changed to P5 in order to change the
+4	SC5	 1	CORE 	Ph1		4		0.0		; interaction of the peg chains with the
+5	SC5	 1	CORE 	Ph1		5		0.0		; core
+6	SC5	 1	CORE 	Ph1		6		0.0
+7	SC5	 1	CORE 	Ph2		7		0.0
+8	SC5	 1	CORE 	Ph2		8		0.0
+9	SC5	 1	CORE 	Ph2		9		0.0
+10	SC5	 1	CORE 	Ph3		10		0.0
+11	SC5	 1	CORE 	Ph3		11		0.0
+12	SC5	 1	CORE 	Ph3		12		0.0
+
+;;; hydrophobic
+; first
+13	SP1	 1	HFOB 	Ox		13		0.0		; Ox: bead containing (Ph)-[-O-Ch2]-
+14	C5	 1	HFOB 	C1		14		0.0		; C1: standard 4 Ch bead
+15	C5	 1	HFOB 	C1		15		0.0
+; second
+16	SP1	 1	HFOB 	Ox		16		0.0
+17	C5	 1	HFOB 	C1		17		0.0
+18	C5	 1	HFOB 	KK		18		0.0
+; third
+19	SP1	 1	HFOB 	Ox		19		0.0
+20	C5	 1	HFOB 	C1		20		0.0
+21	C5	 1	HFOB 	C1		21		0.0
+
+;;; hydrophilic
+; first (with 1,2,3-triazole)
+22	SP1	 1	HFIL 	OAzo		22		0.0		; OxAzo: first bead of the 1,2,3-triazole (connected to the Ph)
+23	SC5	 1	HFIL 	CAzo		23		0.0		; CNAzo: C=C residue of 1,2,3-triazole
+24	SP1	 1	HFIL 	NAzo		24		0.0		; NNAzo: N=N-N residue of 1,2,3-triazole
+25	SP1	 1	HFIL 	EO 			25		0.0
+26	SP1	 1	HFIL 	EO 			26		0.0
+27	SP1	 1	HFIL 	EO 			27		0.0
+28	SP1	 1	HFIL 	EO 			28		0.0
+29	QCB	 1	HFIL 	CRBX 		29		-1.0	; CRBXY: carboxylic residue
+; second
+30	SP1	 1	HFIL 	EO 			30		0.0
+31	SP1	 1	HFIL 	EO 			31		0.0
+32	SP1	 1	HFIL 	EO 			32		0.0
+33	SP1	 1	HFIL 	EO 			33		0.0
+34	SP1	 1	HFIL 	EO 			34		0.0
+35	SP1	 1	HFIL 	Sp2 		35		 0.0
+; third
+36	SP1	 1	HFIL 	EO 			36		0.0
+37	SP1	 1	HFIL 	EO 			37		0.0
+38	SP1	 1	HFIL 	EO 			38		0.0
+39	SP1	 1	HFIL 	EO 			39		0.0
+40	SP1	 1	HFIL 	EO 			40		0.0
+41	SP1	 1	HFIL 	Sp2 		41		 0.0
+
+;;; BONDED INTERACTIONS
+[ bonds ]
+;   i   j   funct   length  force.c.
+	1	2		1	0.35	2000	; P3-P5 #!!! adapted from AAmapped
+	1	3		1	0.35	2000	; P3-P5 #!!! adapted from AAmapped
+
+	6	13		1	0.28	5000	; SC5 - EO #!!!
+	8	16		1	0.28	5000	; SC5 - EO #!!!
+	11	19		1	0.28	5000	; SC5 - EO #!!!
+
+	13	14		1	0.41	3500	; EO - C1 (rossi2018)
+	16	17		1	0.41	3500	; EO - C1
+	19	20		1	0.41	3500	; EO - C1
+
+	14	15		1	0.495	1250	; C1 - C1 (rossi2018)
+	17	18		1	0.495	1250	; C1 - C1
+	20	21		1	0.495	1250	; C1 - C1
+
+	5	22		1	0.22	7000	; 5-22 gave problem with LINCS
+
+	22	23		1	0.23	7000	; SP2 - SC5 AZO
+
+	24	25		1	0.33	5000	; SP3 - EO AZO
+
+	25	26		1	0.332	7000	; EO - EO (rossi2018)
+	26	27		1	0.332	7000	;  -
+	27	28		1	0.332	7000	;  -
+
+	9	30		1	0.28	5000	; SC5 - EO #!!!
+	12	36		1	0.28	5000	; SC5 - EO #!!!
+
+	30	31		1	0.332	7000	; EO - EO (rossi2018)
+	31	32		1	0.332	7000	; - 
+	32	33		1	0.332	7000	; - 
+	33	34		1	0.332	7000	; -
+	36	37		1	0.332	7000	; - (rossi2012)
+	37	38		1	0.332	7000	; - 
+	38	39		1	0.332	7000	; -
+	39	40		1	0.332	7000	; - 
+
+	34	35		1	0.28	7000	; EO - SP2 (rossi2018)
+	40	41		1	0.28	7000	; SP0 - SP2 (rossi2018)
+
+	28	29		1	0.43	5000	; EO - Qa #!!!
+
+[ constraints ]
+;  i    j   funct   length
+; constr Ph1
+   4	5		1		0.27
+   4	6		1		0.27
+   5	6		1		0.27
+; constr Ph2
+   7	8		1		0.27
+   7	9		1		0.27
+   8	9		1		0.27
+; constr Ph3
+   10	11		1		0.27
+   10	12		1		0.27
+   11	12		1		0.27
+; constr 1,2,3-triazole to a rigid residue
+   23	24		1		0.27
+
+; new CORE constrs derived from AAmapped
+   1	4		1		0.275
+   2	7		1		0.275
+   3	10		1		0.275
+
+; new constraint SC5 - SP2 AZO
+; old 5-22 contraint removed due to problem with LINCS
+
+[ angles ]
+; 	i   j   k     funct   angle  force.c.
+	2	1	3		2	155.0	100.0		; P5 - P3 - P5 		#!!!
+
+	2	1	4		2	90.0	4.0		; P5 - P3 - SC5 	#!!!
+	3	1	4		2	90.0	4.0		; P5 - P3 - SC5 	#!!!
+
+	1	2	7		2	120.0	45.0		; P3 - P5 - SC5 	#!!!
+	1	3	10		2	120.0	45.0		; P3 - P5 - SC5 	#!!!
+
+	1	4	5		2	150.00	50.0		; P3 - SC5 - SC5 	#!!!
+	1	4	6		2	150.00	50.0		; P3 - SC5 - SC5 	#!!!
+
+	2	7	8		2	150.00	100.0		; P5 - SC5 - SC5 	#!!!
+	2	7	9		2	150.00	100.0		; P5 - SC5 - SC5 	#!!!
+	3	10	11		2	150.00	100.0		; P5 - SC5 - SC5 	#!!!
+	3	10	12		2	150.00	100.0		; P5 - SC5 - SC5 	#!!!
+
+
+	4	6	13		2	150.00	40.0		; SC5 - SC5 - EO	#!!!
+	5	6	13		2	150.00	40.0		; SC5 - SC5 - EO	#!!!
+	7	8	16		2	150.00  40.0		; SC5 - SC5 - EO	#!!!
+	9	8	16		2	150.00  40.0		; SC5 - SC5 - EO	#!!!
+	10	11	19		2	150.00  40.0		; SC5 - SC5 - EO	#!!!
+	12	11	19		2	150.00  40.0		; SC5 - SC5 - EO	#!!!
+
+	6	13	14		2	180.00	25.0		; SC5 - EO - C1		#!!!
+	8	16	17		2	180.00	25.0		; SC5 - EO - C1 	#!!!
+	11	19	20		2	180.00	25.0		; SC5 - EO - C1 	#!!!
+
+	13	14	15		2	180.00	25.0		; EO - C1 - C1
+	16	17	18		2	180.00	25.0		; EO - C1 - C1
+	19	20	21		2	180.00	25.0		; EO - C1 - C1
+
+
+	6	5	22		2	150.00	20.0		; SC5 - SC5 - SP0 #!!! might be the problem of bimodal
+	4	5	22		2	150.00	20.0		; SC5 - SC5 - SP0 #!!! might be the problem of bimodal
+
+	5	22	23		2	90.00	5.0		; SC5 - SP2 - SC5 (through the 1,2,3-triazole) ??
+
+	22	23	24		2	127.00	30.0		; SP2 - SC5 - SP3
+
+	23	24	25		2	78.00	50.0		; SC5 - SP3 - EO
+
+	24	25	26		2	120.00	30.0		; SP3 - EO - EO
+
+	25	26	27		2	125.00	40.0		; SP2 - EO - EO
+	25	26	27		10	125.00	65.0
+
+
+	8	9	30		2	150.00  40.0		; SC5 - SC5 - EO	#!!!
+	7	9	30		2	150.00  40.0		; SC5 - SC5 - EO	#!!!
+	10	12	36		2	150.00  40.0		; SC5 - SC5 - 	#!!!
+	11	12	36		2	150.00  40.0		; SC5 - SC5 - 	#!!!
+
+	9	30	31		2	150.00	30.0		; SC5 - EO - EO 	#!!!
+	12	36	37		2	150.00	30.0		; SC5 - SP0 -  	#!!!
+
+	30	31	32		2	135.00	50.0		;  - -
+	30	31	32		10	135.00	75.0
+	31	32	33		2	135.00	50.0		;  -  - 
+	31	32	33		10	135.00	75.0
+	32	33	34		2	135.00	50.0		; - - 
+	32	33	34		10	135.00	75.0
+	36	37	38		2	135.00	50.0		; - -
+	36	37	38		10	135.00	75.0
+	37	38	39		2	135.00	50.0		; - - 
+	37	38	39		10	135.00	75.0
+	38	39	40		2	135.00	50.0		; - - 
+	38	39	40		10	135.00	75.0
+	26	27	28		2	135.00	50.0		; EO - EO - EO
+	26	27	28		10	135.00	75.0
+
+	33	34	35		2	140.00	25.0		; EO - EO - SP2
+	39	40	41		2	140.00	25.0		; - - SP2
+
+	27	28	29		2	140.00	35.0		; EO - EO - Qa 	#!!!
+
+
+[ dihedrals  ]
+25  26  27  28			1  0  			0.12  4
+25  26  27  28          1  0  			0.18  2
+25  26  27  28          1  0			0.33  3
+25  26  27  28          1  180.00		1.96  1
+
+30  31  32  33          1  0            0.12  4
+30  31  32  33          1  0            0.18  2
+30  31  32  33          1  0            0.33  3
+30  31  32  33          1  180.00       1.96  1
+
+31  32  33  34          1  0            0.12  4
+31  32  33  34          1  0            0.18  2
+31  32  33  34          1  0            0.33  3
+31  32  33  34          1  180.00       1.96  1
+
+36  37  38  39          1  0            0.12  4
+36  37  38  39          1  0            0.18  2
+36  37  38  39          1  0            0.33  3
+36  37  38  39          1  180.00       1.96  1
+
+37  38  39  40          1  0            0.12  4
+37  38  39  40          1  0            0.18  2
+37  38  39  40          1  0            0.33  3
+37  38  39  40          1  180.00       1.96  1
+

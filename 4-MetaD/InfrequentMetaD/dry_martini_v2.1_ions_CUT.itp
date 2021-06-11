@@ -1,0 +1,23 @@
+;;; ANIONS
+;;; CL-
+
+; HYDRATED CHLORIDE ION
+
+[moleculetype]
+; molname       nrexcl
+  CL-           1
+
+[atoms]
+; i type resnr residue atom cgnr charge
+  1 Qa   1     ION     CL-   1   -1.0
+
+; HYDRATED CHLORIDE ION
+
+[moleculetype]
+; molname       nrexcl
+  NA+           1
+
+[atoms]
+; i type resnr residue atom cgnr charge
+  1 Qa   1     ION     NA+   1   1.0
+

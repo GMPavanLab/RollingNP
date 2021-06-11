@@ -1,0 +1,52 @@
+define                  = 
+integrator              = md
+nsteps                  = 500000000
+tinit                   = 0
+nstlist                 = 20
+nstfout                 = 0
+nstxout                 = 20000
+nstvout                 = 20000
+nstxtcout               = 500
+nstcalcenergy           = 10
+nstlog                  = 50000
+dt                      = 0.002
+nstenergy               = 2000
+energygrps              = 
+
+coulombtype             = PME
+rlist                   = 1.0
+rvdw                    = 1.0
+rcoulomb                = 1.0
+
+tcoupl                  = v-rescale
+tc_grps                 = system
+tau_t                   = 1
+ref_t                   = 300
+
+pcoupl			= berendsen
+pcoupltype		= isotropic	
+tau_p			= 1.0 
+ref_p			= 1.0 1.0
+compressibility		= 4.5e-5 4.5e-5
+refcoord-scaling	= all
+
+gen_vel                  = yes 
+gen_temp                 = 293 
+gen_seed                 = 666
+
+fourier_spacing         = 0.16
+
+; GolP has been tested with lincs only
+constraints              = h-bonds        ; all-bonds
+constraint_algorithm     = lincs
+lincs_order              = 4
+lincs_iter               = 2
+; Many warnings of large rotations of rods
+; may appear in the initial few ps of the simulation
+; to prevent them:
+lincs_warnangle          = 80
+
+cutoff-scheme           = verlet
+
+;freezegrps              = FISSO
+;freezedim               = Y Y Y

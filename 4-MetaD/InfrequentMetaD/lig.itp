@@ -1,0 +1,21 @@
+;;; lig.itp
+;;; LIGAND
+[ moleculetype ]
+; molname       nrexcl
+LIGAND			1
+
+[ atoms ]
+; i type resnr residue atom cgnr charge
+1	BB		1	LIGB	LIGB	1		0.0
+2	C5L		1	LIGC	LIGC	1		0.0
+3	Q0		1	LIGN	LIGN	1		+1.0
+
+;;; BONDED INTERACTIONS
+[ bonds ]
+;   	i   	j   funct   		length  force.c.
+	1	2	1		0.50	10000 ;1250
+	2	3	1		0.50	10000 ;5000
+	
+[ angles ]
+; 	i   j   k     funct   angle  force.c.
+	1	2	3		2		180.00	350.0

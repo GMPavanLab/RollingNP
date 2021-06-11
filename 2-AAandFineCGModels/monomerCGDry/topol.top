@@ -1,0 +1,12 @@
+; Include forcefield parameters
+#include "martini_PEO.itp"
+#include "CGOlig_1m.itp"
+#include "martini_ions.itp"
+
+[ system ]
+; Name
+1 CG TRIMER in WATER with 1 NA+
+
+[ molecules ]
+; Compound        #mols
+TRMR     1

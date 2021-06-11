@@ -1,0 +1,27 @@
+INCLUDE FILE=common-plumed.dat
+
+METAD ...
+  LABEL=metad
+  CALC_RCT
+  ARG=d.x,d.y
+  PACE=500
+  HEIGHT=1.2
+  SIGMA=0.1,0.1
+  FILE=HILLS
+  GRID_MIN=-5.0,-5.0
+  GRID_MAX=65.0,65.0
+  BIASFACTOR=10
+  TEMP=300
+  WALKERS_MPI
+... METAD
+
+
+
+# Printing
+FLUSH STRIDE=500
+PRINT ARG=d.x,d.y,d.z,metad.* FILE=distanze-BIAS.dat STRIDE=500
+PRINT ARG=d.x,d.y,d.z FILE=distanze.dat STRIDE=500
+
+
+ENDPLUMED
+

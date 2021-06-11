@@ -1,0 +1,164 @@
+[ defaults ]
+; nbfunc comb-rule gen-pairs fudgeLJ fudgeQQ
+  1      2         no        1.0     1.0
+
+
+; definition of the nonbonded interacitons strenght
+;       name           sig    eps
+#define guestint       0.4300 6.5000   # int GUEST with HFOB
+
+#define dm_rrII        0.4700 4.5000   # regular/regular
+#define dm_rrIII       0.4700 4.0000
+#define dm_rrIV        0.4700 3.5000
+#define dm_rrV         0.4700 3.1000
+#define dm_rrVI        0.4700 2.7000
+#define dm_rrVII       0.4700 2.3000
+#define dm_rrVIII      0.4700 2.0000
+#define dm_rrIX        0.6200 2.0000
+#define dm_rrX         0.4700 1.5000
+#define dm_rrXI        0.4700 1.0000
+#define dm_rrXII       0.4700 0.5000
+#define dm_rrVI_qq     0.6000 2.7000   # regular/regular, charge/charge interactions
+
+#define dm_NH3pCRBm    0.6000 10.500
+
+#define dm_rrVII_qq    0.6000 2.3000
+#define dm_rrVIII_qq   0.6000 2.0000
+#define dm_ssII        0.4300 3.4000   # small/small
+#define dm_ssIII       0.4300 3.0000
+#define dm_ssIV        0.4300 2.6000
+#define dm_ssV         0.4300 2.3000
+#define dm_ssVI        0.4300 2.0000
+#define dm_ssVII       0.4300 1.7000
+#define dm_ssVIII      0.4300 1.5000
+#define dm_ssIX        0.6200 2.0000
+#define dm_ssX         0.4300 1.1250
+#define dm_ssXI        0.4300 0.7500
+#define dm_ssXII       0.4300 0.3750
+#define dm_ssVI_qq     0.5500 2.0000   # small/small, charge/charge interactions
+#define dm_ssVII_qq    0.5500 1.7000
+#define dm_ssVIII_qq   0.5500 1.5000
+#define dm_rsII        0.4700 4.5000   # regular/small
+#define dm_rsIII       0.4700 4.0000
+#define dm_rsIV        0.4700 3.5000
+#define dm_rsV         0.4700 3.1000
+#define dm_rsVI        0.4700 2.7000
+#define dm_rsVII       0.4700 2.3000
+#define dm_rsVIII      0.4700 2.0000
+#define dm_rsIX        0.6200 2.0000
+#define dm_rsX         0.4700 1.5000
+#define dm_rsXI        0.4700 1.0000
+#define dm_rsXII       0.4700 0.5000
+#define dm_rsVI_qq     0.6000 2.7000   # regular/small, charge/charge interactions
+#define dm_rsVII_qq    0.6000 2.3000
+#define dm_rsVIII_qq   0.6000 2.0000
+
+[ atomtypes ]
+; name    mass chrg ptype sig eps
+; special beads
+  BB   72.0 0.000 A 0.0 0.0		; base bead of the ligands
+  WAL  72.0 0.000 A 0.0 0.0		; lower wall "beads"
+  C5L  72.0 0.000 A 0.0 0.0		; carbon bead of the ligands
+  QCB  72.0 0.000 A 0.0 0.0		; carboxilyc residue of the monomer (special bead
+					; due tunig of interactions)
+  GUG  45.0 0.000 A 0.0 0.0             ; guest
+
+; standard beads
+  Q0      72.0 0.0  A     0.0 0.0	; -NH3+ Lig extremity
+
+  Qa      72.0 0.0  A     0.0 0.0	; NA+ & CL- ion
+
+  P1      72.0 0.0  A     0.0 0.0
+
+  C5      72.0 0.0  A     0.0 0.0
+
+  SP1     45.0 0.0  A     0.0 0.0
+
+  SC5     45.0 0.0  A     0.0 0.0
+
+
+[ nonbond_params ]
+; special beads
+
+	BB   BB		1   0.0000          0.0000
+	BB   WAL	1   0.0000          0.0000
+	BB   P1		1   0.0000          0.0000
+	BB   C5		1   0.0000          0.0000
+	BB   C5L	1   0.0000	    0.0000
+	BB   SC5	1   0.0000          0.0000
+	BB   SP1	1   0.0000          0.0000
+	BB   Qa		1   0.0000          0.0000
+	BB   Q0		1   0.0000          0.0000
+	BB   QCB	1   0.0000          0.0000
+
+	WAL  WAL	1	dm_rrXII
+	WAL  P1		1	dm_rrXII
+	WAL  C5		1	dm_rrXII
+	WAL  C5L	1       dm_rrXII ;          0.0000          0.0000
+	WAL  SC5	1	dm_rsXII
+	WAL  SP1	1	dm_rsXII
+	WAL  Qa		1	dm_rrXII
+	WAL  Q0		1       dm_rrXII ; 0.0000          0.0000
+	WAL  QCB	1	dm_rrXII
+
+	C5L C5L    1    dm_rrVII ;0.0000 0.0000 
+        C5L SP1    1    dm_rsXII
+        C5L SC5    1    dm_rsVI
+	C5L QCB    1    dm_rrXII
+	
+
+;  part part   func level
+
+     Qa Qa     1    dm_rrVIII_qq ;dm_rrVII_qq
+     Qa Q0     1    dm_rrVI_qq ;dm_rrVIII_qq
+     Qa P1     1    dm_rrXII
+     Qa C5     1    dm_rrXII
+     Qa C5L    1    dm_rrXII
+     Qa SP1    1    dm_rsXII
+     Qa SC5    1    dm_rsXII
+     Qa QCB    1    dm_rrVIII_qq
+ 
+     QCB QCB   1    dm_rrVIII_qq
+
+     Q0 Q0     1    dm_rrVIII_qq
+     Q0 P1     1    dm_rrXII
+     Q0 C5     1    dm_rrXII
+     Q0 C5L    1    dm_rrXII
+     Q0 SP1    1    dm_rsXII
+     Q0 SC5    1    dm_rsXII
+
+     Q0	QCB    1    dm_NH3pCRBm
+
+     P1 P1     1    dm_rrX
+     P1 C5     1    dm_rrXII
+     P1 C5L    1    dm_rrXII
+     P1 SP1    1    dm_rsX
+     P1 SC5    1    dm_rsXII
+     P1 QCB    1    dm_rrXII
+
+     C5 C5     1    dm_rrII
+     C5 C5L    1    dm_rrII ;0.00000  0.0000
+     C5 SP1    1    dm_rsXII
+     C5 SC5    1    dm_rsVI
+     C5 QCB    1    dm_rrXII
+
+    SP1 SP1    1    dm_ssXII
+    SP1 SC5    1    dm_ssXII
+    SP1 QCB    1    dm_rrXII
+
+    SC5 SC5    1    dm_ssV
+    SC5 QCB    1    dm_rrXII
+
+ GUG   GUG      1   dm_rsXII
+ GUG   BB	1   dm_rsXII
+ GUG   WAL	1   dm_rsXII
+ GUG   P1	1   dm_rsXII
+ GUG   C5	1   guestint
+ GUG   C5L	1   dm_rsXII
+ GUG   SC5	1   dm_rsXII
+ GUG   SP1	1   dm_rsXII
+ GUG   Qa	1   dm_rsXII
+ GUG   Q0	1   dm_rsXII
+ GUG   QCB	1   dm_rsXII
+
+; martini-itp-generator.py -ff dry-martini21 dry-chol -ascii

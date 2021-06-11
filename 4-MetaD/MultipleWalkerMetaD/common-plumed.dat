@@ -1,0 +1,12 @@
+WHOLEMOLECULES ENTITY0=1-1814 
+RANDOM_EXCHANGES
+
+a: FIXEDATOM AT=0.0,0.0,1.1
+
+# Cycles' centers of mass
+com1: COM ATOMS=1-1814
+
+# XDistance of the blob respect the origin of the surface
+d: DISTANCE ATOMS=a,com1 COMPONENTS NOPBC
+
+

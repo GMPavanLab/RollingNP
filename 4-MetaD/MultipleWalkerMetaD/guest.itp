@@ -1,0 +1,10 @@
+;; trimer.itp
+[ moleculetype ]
+; molname       nrexcl
+GUEST		1
+
+[ atoms ]
+;;; residue: CORE; HFOB (hydrophobic); HFIL (hydrophilic)
+;;; core
+; i type resnr residue atom cgnr charge mass
+1	GUG	 1	GUEST	KK 		1		0.0		; Nc: central N bead, changed as P1

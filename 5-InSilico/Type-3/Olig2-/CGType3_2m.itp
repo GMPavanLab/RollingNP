@@ -1,0 +1,263 @@
+;;; trimer.itp
+[ moleculetype ]
+; molname       nrexcl
+TRMR			1
+
+[ atoms ]
+;;; residue: CORE; HFOB (hydrophobic); HFIL (hydrophilic)
+;;; core
+; i type resnr residue atom cgnr charge mass
+1	P1	 1	CORE	Nc 		1		0.0		; Nc: central N bead, changed as P1
+2	P1	 1	CORE	Pt		2		0.0		; Pt: peptidic bead, cahnged as P5
+3	P1	 1	CORE 	Pt		3		0.0		; changed to P5 in order to change the
+4	SC5	 1	CORE 	Ph1		4		0.0		; interaction of the peg chains with the
+5	SC5	 1	CORE 	Ph1		5		0.0		; core
+6	SC5	 1	CORE 	Ph1		6		0.0
+7	SC5	 1	CORE 	Ph2		7		0.0
+8	SC5	 1	CORE 	Ph2		8		0.0
+9	SC5	 1	CORE 	Ph2		9		0.0
+10	SC5	 1	CORE 	Ph3		10		0.0
+11	SC5	 1	CORE 	Ph3		11		0.0
+12	SC5	 1	CORE 	Ph3		12		0.0
+
+;;; hydrophobic
+; first
+13	SP1	 1	HFOB 	Ox		13		0.0		; Ox: bead containing (Ph)-[-O-Ch2]-
+14	C5	 1	HFOB 	C1		14		0.0		; C1: standard 4 Ch bead
+
+; second
+15	SP1	 1	HFOB 	Ox		15		0.0
+16	C5	 1	HFOB 	C1		16		0.0
+
+; third
+17	SP1	 1	HFOB 	Ox		17		0.0
+18	C5	 1	HFOB 	C1		18		0.0
+
+;;; hydrophilic
+; first (with 1,2,3-triazole)
+19	SP1	 1	HFIL 	EO		19		0.0		;
+20	SP1	 1	HFIL 	EO 			20		0.0
+21  	SP1	 1	HFIL 	EO 			21		0.0
+22	SP1	 1	HFIL 	EO 			22		0.0
+23	SP1	 1	HFIL 	EO 			23		0.0
+24	QCB	 1	HFIL 	CRBX 		24		-1.0	; CRBXY: carboxylic residue
+; second
+25	SP1	 1	HFIL 	EO 			25		0.0
+26	SP1	 1	HFIL 	EO 			26		0.0
+27	SP1	 1	HFIL 	EO 			27		0.0
+28	SP1	 1	HFIL 	EO 			28		0.0
+29	SP1	 1	HFIL 	EO 			29		0.0
+30	QCB	 1	HFIL 	CRBX 		30		-1.0
+; third
+31	SP1	 1	HFIL 	EO 			31		0.0
+32	SP1	 1	HFIL 	EO 			32		0.0
+33	SP1	 1	HFIL 	EO 			33		0.0
+34	SP1	 1	HFIL 	EO 			34		0.0
+35	SP1	 1	HFIL 	EO 			35		0.0
+36	SP1	 1	HFIL 	Sp2 		36		0.0
+
+;;; SC5 phenyl tail
+37	SC5	 1	HFTL 	PhT		37		0.0
+38	SC5	 1	HFTL 	PhT		38		0.0
+39	SC5	 1	HFTL 	PhT		39		0.0
+
+40	SC5	 1	HFTL 	PhT		40		0.0
+41	SC5	 1	HFTL 	PhT		41		0.0
+42	SC5	 1	HFTL 	PhT		42		0.0
+
+43	SC5	 1	HFTL 	PhT		43		0.0
+44	SC5	 1	HFTL 	PhT		44		0.0
+45	SC5	 1	HFTL 	PhT		45		0.0
+
+
+;;; BONDED INTERACTIONS
+[ bonds ]
+;   i   j   funct   length  force.c.
+	1	2		1	0.35	2000	; P3-P5 #!!! adapted from AAmapped
+	1	3		1	0.35	2000	; P3-P5 #!!! adapted from AAmapped
+
+	6	13		1	0.28	5000	; SC5 - EO #!!!
+	8	15		1	0.28	5000	; SC5 - EO #!!!
+	11	17		1	0.28	5000	; SC5 - EO #!!!
+
+	13	14		1	0.41	3500	; EO - C1 (rossi2018)
+	15	16		1	0.41	3500	; EO - C1 !!! CAMBIATO
+	17	18		1	0.41	3500	; EO - C1
+
+	5	19		1	0.22	7000	; 5-22 gave problem with LINCS
+
+	19	20		1	0.332	7000	; SP2 - EO AZO
+
+	20	21		1	0.332	7000	; EO - EO (rossi2018)
+	21	22		1	0.332	7000	;  -
+	22	23		1	0.332	7000	;  -
+
+	9	25		1	0.28	5000	; SC5 - EO #!!!
+	12	31		1	0.28	5000	; SC5 - EO #!!!
+
+	25	26		1	0.332	7000	; EO - EO (rossi2018)
+	26	27		1	0.332	7000	; - 
+	27	28		1	0.332	7000	; - 
+	28	29		1	0.332	7000	; -
+	31	32		1	0.332	7000	; - (rossi2012)
+	32	33		1	0.332	7000	; - 
+	33	34		1	0.332	7000	; -
+	34	35		1	0.332	7000	; - 
+
+	29	30		1	0.28	7000	; EO - SP2 (rossi2018)
+	35	36		1	0.28	7000	; SP0 - SP2 (rossi2018)
+
+	23	24		1	0.43	5000	; EO - Qa #!!!
+
+	14	37		1	0.28	5000	; SC5 - EO #!!!
+	16	40		1	0.28	5000	; SC5 - EO #!!!
+	18	43		1	0.28	5000	; SC5 - EO #!!!
+
+[ constraints ]
+;  i    j   funct   length
+; constr Ph1
+   4	5		1		0.27
+   4	6		1		0.27
+   5	6		1		0.27
+; constr Ph2
+   7	8		1		0.27
+   7	9		1		0.27
+   8	9		1		0.27
+; constr Ph3
+   10	11		1		0.27
+   10	12		1		0.27
+   11	12		1		0.27
+
+; new CORE constrs derived from AAmapped
+   1	4		1		0.275
+   2	7		1		0.275
+   3	10		1		0.275
+
+; new constraint SC5 - SP2 AZO
+; old 5-22 contraint removed due to problem with LINCS
+
+
+; contrs TAIL SC5
+   37	38		1		0.27
+   37	39		1		0.27
+   38	39		1		0.27
+
+   40	41		1		0.27
+   40	42		1		0.27
+   41	42		1		0.27
+
+   43	44		1		0.27
+   43	45		1		0.27
+   44	45		1		0.27
+
+[ angles ]
+; 	i   j   k     funct   angle  force.c.
+	2	1	3		2	155.0	100.0		; P5 - P3 - P5 		#!!!
+
+	2	1	4		2	90.0	4.0			; P5 - P3 - SC5 	#!!!
+	3	1	4		2	90.0	4.0			; P5 - P3 - SC5 	#!!!
+
+	1	2	7		2	120.0	45.0		; P3 - P5 - SC5 	#!!!
+	1	3	10		2	120.0	45.0		; P3 - P5 - SC5 	#!!!
+
+	1	4	5		2	150.00	50.0		; P3 - SC5 - SC5 	#!!!
+	1	4	6		2	150.00	50.0		; P3 - SC5 - SC5 	#!!!
+
+	2	7	8		2	150.00	100.0		; P5 - SC5 - SC5 	#!!!
+	2	7	9		2	150.00	100.0		; P5 - SC5 - SC5 	#!!!
+	3	10	11		2	150.00	100.0		; P5 - SC5 - SC5 	#!!!
+	3	10	12		2	150.00	100.0		; P5 - SC5 - SC5 	#!!!
+
+
+	4	6	13		2	150.00	40.0		; SC5 - SC5 - EO	#!!!
+	5	6	13		2	150.00	40.0		; SC5 - SC5 - EO	#!!!
+
+	7	8	15		2	150.00  40.0		; SC5 - SC5 - EO	#!!!
+	9	8	15		2	150.00  40.0		; SC5 - SC5 - EO	#!!! CAMBIATO
+
+	10	11	17		2	150.00  40.0		; SC5 - SC5 - EO	#!!!
+	12	11	17		2	150.00  40.0		; SC5 - SC5 - EO	#!!!
+
+	6	13	14		2	180.00	25.0		; SC5 - EO - C1		#!!!
+
+	8	15	16		2	180.00	25.0		; SC5 - EO - C1 	#!!! CAMBIATO
+
+	11	17	18		2	180.00	25.0		; SC5 - EO - C1 	#!!!
+
+
+	6	5	19		2	150.00	20.0		; SC5 - SC5 - SP0 #!!! might be the problem of bimodal
+	4	5	19		2	150.00	20.0		; SC5 - SC5 - SP0 #!!! might be the problem of bimodal
+
+	5	19	20		2	150.00	30.0		; SC5 - SP0 -  	#!!!
+
+	19	20	21		2	135.00	50.0		; EO - EO - EO
+	19	20	21		10	135.00	75.0		
+
+	20	21	22		2	135.00	50.0		; EO - EO - EO
+	20	21	22		10	135.00	75.0
+
+
+	8	9	25		2	150.00  40.0		; SC5 - SC5 - EO	#!!!
+	7	9	25		2	150.00  40.0		; SC5 - SC5 - EO	#!!!
+	10	12	31		2	150.00  40.0		; SC5 - SC5 - 	#!!!
+	11	12	31		2	150.00  40.0		; SC5 - SC5 - 	#!!!
+
+	9	25	26		2	150.00	30.0		; SC5 - EO - EO 	#!!!
+	12	31	32		2	150.00	30.0		; SC5 - SP0 -  	#!!!
+
+	25	26	27		2	135.00	50.0		;  - -
+	25	26	27		10	135.00	75.0
+	26	27	28		2	135.00	50.0		;  -  - 
+	26	27	28		10	135.00	75.0
+	27	28	29		2	135.00	50.0		; - - 
+	27	28	29		10	135.00	75.0
+	31	32	33		2	135.00	50.0		; - -
+	31	32	33		10	135.00	75.0
+	32	33	34		2	135.00	50.0		; - - 
+	32	33	34		10	135.00	75.0
+	33	34	35		2	135.00	50.0		; - - 
+	33	34	35		10	135.00	75.0
+	21	22	23		2	135.00	50.0		; EO - EO - EO
+	21	22	23		10	135.00	75.0
+
+	28	29	30		2	140.00	25.0		; EO - EO - SP2
+	34	35	36		2	140.00	25.0		; - - SP2
+
+	22	23	24		2	140.00	35.0		; EO - EO - Qa 	#!!!
+
+	13	14	37		2	180.00	35.0		;
+	15	16	40		2	180.00	35.0		;
+	17	18	43		2	180.00	35.0		;
+
+
+[ dihedrals  ]
+19  20  21  22		1  0  		0.12  4
+19  20  21  22          1  0  		0.18  2
+19  20  21  22          1  0		0.33  3
+19  20  21  22          1  180.00	1.96  1
+
+20  21  22  23		1  0  		0.12  4
+20  21  22  23          1  0  		0.18  2
+20  21  22  23          1  0		0.33  3
+20  21  22  23          1  180.00	1.96  1
+
+25  26  27  28          1  0            0.12  4
+25  26  27  28          1  0            0.18  2
+25  26  27  28          1  0            0.33  3
+25  26  27  28          1  180.00       1.96  1
+
+26  27  28  29          1  0            0.12  4
+26  27  28  29          1  0            0.18  2
+26  27  28  29          1  0            0.33  3
+26  27  28  29          1  180.00       1.96  1
+
+31  32  33  34          1  0            0.12  4
+31  32  33  34          1  0            0.18  2
+31  32  33  34          1  0            0.33  3
+31  32  33  34          1  180.00       1.96  1
+
+32  33  34  35          1  0            0.12  4
+32  33  34  35          1  0            0.18  2
+32  33  34  35          1  0            0.33  3
+32  33  34  35          1  180.00       1.96  1
+

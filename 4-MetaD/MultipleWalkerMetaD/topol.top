@@ -1,0 +1,17 @@
+#include "dry_martini_CUT.itp"
+#include "dry_martini_v2.1_ions_CUT.itp"
+#include "lig.itp"
+#include "CGOlig_1m.itp"
+#include "guest.itp"
+
+[ system ]
+; Name
+Surface Dry
+
+[ molecules ]
+; Compound        #mols
+TRMR    44
+GUEST   10
+LIGAND	216
+CL-     172
+

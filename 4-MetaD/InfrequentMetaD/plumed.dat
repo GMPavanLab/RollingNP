@@ -1,0 +1,50 @@
+WHOLEMOLECULES ENTITY0=1-1814 
+# Virtual atom in the center of the box
+a: FIXEDATOM AT=0.0,0.0,1.1
+
+# Cycles' centers of mass
+com1: COM ATOMS=1-1814
+
+# Distance of the blob respect the origin of the surface
+d: DISTANCE ATOMS=a,com1 COMPONENTS NOPBC
+dist: MATHEVAL ARG=d.x,d.y FUNC=sqrt(x^2+y^2) PERIODIC=NO
+
+# Number of contacts
+palla: GROUP NDX_FILE=index.ndx NDX_GROUP=palla
+lig: GROUP NDX_FILE=index.ndx NDX_GROUP=lig
+
+c: COORDINATION GROUPA=palla GROUPB=lig SWITCH={RATIONAL R_0=0.6 D_MAX=1.2} NLIST NL_CUTOFF=1.0 NL_STRIDE=100
+uwall: UPPER_WALLS ARG=c AT=30 KAPPA=10.0 EXP=2
+
+METAD ...
+LABEL=metad
+ARG=c,dist
+TEMP=300
+BIASFACTOR=10
+PACE=50000
+HEIGHT=1.2
+SIGMA=0.5,0.1
+FILE=HILLS
+GRID_MIN=-1,0
+GRID_MAX=50,50
+CALC_RCT
+ACCELERATION
+... METAD
+
+COMMITTOR ...
+  ARG=c
+  STRIDE=10
+  BASIN_LL1=0
+  BASIN_UL1=0
+... COMMITTOR
+
+
+potential: MATHEVAL ARG=metad.bias,uwall.bias FUNC=x+y PERIODIC=NO
+
+# Printing
+PRINT STRIDE=500 ARG=c,d.x,d.y,d.z,potential,metad.* FILE=COLVAR
+PRINT STRIDE=500 ARG=uwall.bias FILE=WALLS
+FLUSH STRIDE=500
+
+ENDPLUMED
+
